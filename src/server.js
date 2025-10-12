@@ -15,6 +15,7 @@ let server = createServer((req, res) => {
   } else if (req.url === "/random" && req.method === "GET") {
     random(req, res);
   } else {
+    res.setHeader("Content-Type", "text/plain");
     res.statusCode = 404;
     res.end("page not found");
   }

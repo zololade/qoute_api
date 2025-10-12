@@ -1,3 +1,4 @@
+import { grabRandomData } from "./logic.js";
 export function root(req, res) {
   res.statusCode = 200;
   res.end("hello");
@@ -13,6 +14,8 @@ export function quotes(req, res) {
 }
 
 export function random(req, res) {
+  let data = grabRandomData();
+  res.setHeader("Content-Type", "text/plain");
   res.statusCode = 200;
-  res.end("random");
+  res.end(JSON.stringify(data));
 }

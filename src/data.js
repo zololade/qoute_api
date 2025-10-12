@@ -550,3 +550,5 @@ const quotes = [
       "The happiness of your life depends upon the quality of your thoughts.",
   },
 ];
+
+export default quotes;
