@@ -1,0 +1,12 @@
+{
+  "name": "qoute_api",
+  "version": "1.0.0",
+  "description": "a quote api",
+  "license": "ISC",
+  "author": "Ololade",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
