@@ -5,7 +5,7 @@ import { dirname, join } from "node:path";
 
 let __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const logFile = join(dirname(__dirname), "/assets/log.txt");
+const logFile = join(dirname(__dirname), "assets", "log.txt");
 
 export function grabRandomData() {
   let randomIndex = data.length;
