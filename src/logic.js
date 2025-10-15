@@ -24,6 +24,7 @@ async function readLog() {
     return lastLine;
   } catch (err) {
     console.error(`something went wrong ${err}`);
+    return undefined;
   } finally {
     await fileHandle.close();
   }
