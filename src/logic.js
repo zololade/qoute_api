@@ -1,8 +1,7 @@
 import { fileURLToPath } from "node:url";
 import data from "./data.js";
-import { readFile, open, appendFile } from "node:fs/promises";
+import { open, appendFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
-import { loadavg } from "node:os";
 
 let __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
