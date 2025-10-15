@@ -1,6 +1,6 @@
 import { fileURLToPath } from "node:url";
 import data from "./data.js";
-import { open, appendFile } from "node:fs/promises";
+import { open, appendFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 
 let __filename = fileURLToPath(import.meta.url);
@@ -31,6 +31,8 @@ async function readLog() {
 
 async function writeLog() {
   let readLogTxt = await readLog();
+  let id;
+
   const thisDate = `${new Date().getDate()}-${
     new Date().getMonth() + 1
   }-${new Date().getFullYear()}`;
@@ -45,13 +47,22 @@ async function writeLog() {
   } else if (
     thisDate !== readLogTxt.match(/\d{1,2}-\d{1,2}-\d{4}/)[0]
   ) {
-    let id = readLogTxt.match(/(?<=\[id:)\d+(?=\])/)[0];
-    await appendFile(
-      logFile,
-      `[id:${data[id].id}] quote for ${new Date().getDate()}-${
-        new Date().getMonth() + 1
-      }-${new Date().getFullYear()}\n`
-    );
+    id = readLogTxt.match(/(?<=\[id:)\d+(?=\])/)[0];
+    if (+id !== +data[data.length - 1].id) {
+      await appendFile(
+        logFile,
+        `[id:${data[id].id}] quote for ${new Date().getDate()}-${
+          new Date().getMonth() + 1
+        }-${new Date().getFullYear()}\n`
+      );
+    } else {
+      await writeFile(
+        logFile,
+        `[id:${data[0].id}] quote for ${new Date().getDate()}-${
+          new Date().getMonth() + 1
+        }-${new Date().getFullYear()}\n`
+      );
+    }
   } else {
     return;
   }
@@ -67,3 +78,5 @@ export async function grabTodayData() {
 export function grabAllData() {
   return data;
 }
+
+writeLog();
