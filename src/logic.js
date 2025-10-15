@@ -31,14 +31,16 @@ async function readLog() {
 
 async function writeLog() {
   let readLogTxt = await readLog();
-  const thisDate = `${new Date().getDate()}-${new Date().getMonth()}-${new Date().getFullYear()}`;
+  const thisDate = `${new Date().getDate()}-${
+    new Date().getMonth() + 1
+  }-${new Date().getFullYear()}`;
   //end goal : [id:2] quote for 2025-10-14T23:44:30.138Z
   if (readLogTxt === undefined) {
     await appendFile(
       logFile,
-      `[id:${
-        data[0].id
-      }] quote for ${new Date().getDate()}-${new Date().getMonth()}-${new Date().getFullYear()}\n`
+      `[id:${data[0].id}] quote for ${new Date().getDate()}-${
+        new Date().getMonth() + 1
+      }-${new Date().getFullYear()}\n`
     );
   } else if (
     thisDate !== readLogTxt.match(/\d{1,2}-\d{1,2}-\d{4}/)[0]
@@ -46,9 +48,9 @@ async function writeLog() {
     let id = readLogTxt.match(/(?<=\[id:)\d+(?=\])/)[0];
     await appendFile(
       logFile,
-      `[id:${
-        data[id].id
-      }] quote for ${new Date().getDate()}-${new Date().getMonth()}-${new Date().getFullYear()}\n`
+      `[id:${data[id].id}] quote for ${new Date().getDate()}-${
+        new Date().getMonth() + 1
+      }-${new Date().getFullYear()}\n`
     );
   } else {
     return;
