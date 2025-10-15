@@ -61,3 +61,7 @@ export async function grabTodayData() {
   let id = readLogTxt.match(/(?<=\[id:)\d+(?=\])/)[0];
   return data[id - 1];
 }
+
+export function grabAllData() {
+  return data;
+}
