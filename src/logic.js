@@ -78,5 +78,3 @@ export async function grabTodayData() {
 export function grabAllData() {
   return data;
 }
-
-writeLog();
