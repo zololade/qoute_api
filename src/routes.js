@@ -1,11 +1,14 @@
-import { grabRandomData } from "./logic.js";
+import { grabRandomData, grabTodayData } from "./logic.js";
 export function root(req, res) {
   res.statusCode = 200;
   res.end("hello");
 }
 export function quote(req, res) {
-  res.statusCode = 200;
-  res.end("quote");
+  grabTodayData().then((data) => {
+    res.setHeader("Content-Type", "text/plain");
+    res.statusCode = 200;
+    res.end(JSON.stringify(data));
+  });
 }
 
 export function quotes(req, res) {
