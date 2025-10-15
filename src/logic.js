@@ -21,12 +21,11 @@ async function readLog() {
     for await (const data of fileHandle.readLines()) {
       lastLine = data;
     }
+    await fileHandle.close();
     return lastLine;
   } catch (err) {
     console.error(`something went wrong ${err}`);
     return undefined;
-  } finally {
-    await fileHandle.close();
   }
 }
 
