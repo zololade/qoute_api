@@ -5,7 +5,9 @@ import {
 } from "./logic.js";
 export function root(req, res) {
   res.statusCode = 200;
-  res.end("hello");
+  res.end(
+    `Hello, This my quote api,\nwhy not try it out\n/random, /quotes, and /quote`
+  );
 }
 export function quote(req, res) {
   grabTodayData().then((data) => {
