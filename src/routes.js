@@ -3,6 +3,7 @@ import {
   grabTodayData,
   grabAllData,
 } from "./logic.js";
+
 export function root(req, res) {
   res.statusCode = 200;
   res.end(
